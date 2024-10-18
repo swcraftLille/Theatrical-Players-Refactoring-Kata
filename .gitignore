@@ -3,3 +3,6 @@
 **/build
 **/.gradle
 .DS_Store
+*.user
+*.ncrunchsolution
+*.ncrunchproject
