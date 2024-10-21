@@ -6,3 +6,4 @@
 *.user
 *.ncrunchsolution
 *.ncrunchproject
+/csharp/.NCrunch_TheatricalPlayersRefactoringKata
