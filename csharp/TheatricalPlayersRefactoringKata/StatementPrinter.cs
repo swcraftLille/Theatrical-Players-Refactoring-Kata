@@ -11,6 +11,12 @@ public static class StatementPrinter
         var volumeCredits = VolumeCreditsFor(invoice, plays);
         var totalAmount = TotalAmountFor(invoice, plays);
 
+        var result = TextStatementFor(invoice, plays, totalAmount, volumeCredits);
+        return result;
+    }
+
+    private static string TextStatementFor(Invoice invoice, Dictionary<string, Play> plays, decimal totalAmount, int volumeCredits)
+    {
         var result = $"Statement for {invoice.Customer}\n";
         foreach (var perf in invoice.Performances)
         {
