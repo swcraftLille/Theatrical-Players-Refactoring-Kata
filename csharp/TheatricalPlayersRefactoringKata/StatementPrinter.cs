@@ -13,18 +13,21 @@ public static class StatementPrinter
         var result = string.Format("Statement for {0}\n", invoice.Customer);
         CultureInfo cultureInfo = new CultureInfo("en-US");
 
-        foreach(var perf in invoice.Performances) 
+        foreach (var perf in invoice.Performances)
         {
-            var play = plays[perf.PlayID];
             // add volume credits
             volumeCredits += Math.Max(perf.Audience - 30, 0);
             // add extra credit for every ten comedy attendees
-            if ("comedy" == play.Type) volumeCredits += (int)Math.Floor((decimal)perf.Audience / 5);
-
-            // print line for this order
-            result += string.Format(cultureInfo, "  {0}: {1:C} ({2} seats)\n", play.Name, Convert.ToDecimal(AmountFor(play, perf) / 100), perf.Audience);
-            totalAmount += AmountFor(play, perf);
+            if ("comedy" == plays[perf.PlayID].Type) volumeCredits += (int)Math.Floor((decimal)perf.Audience / 5);
         }
+
+        foreach (var perf in invoice.Performances)
+        {
+            // print line for this order
+            result += string.Format(cultureInfo, "  {0}: {1:C} ({2} seats)\n", plays[perf.PlayID].Name, Convert.ToDecimal(AmountFor(plays[perf.PlayID], perf) / 100), perf.Audience);
+            totalAmount += AmountFor(plays[perf.PlayID], perf);
+        }
+
         result += String.Format(cultureInfo, "Amount owed is {0:C}\n", Convert.ToDecimal(totalAmount / 100));
         result += $"You earned {volumeCredits} credits\n";
         return result;
