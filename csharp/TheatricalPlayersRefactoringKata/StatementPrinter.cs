@@ -34,7 +34,7 @@ public static class StatementPrinter
         foreach (var perf in invoice.Performances)
         {
             // print line for this order
-            result += string.Format(new CultureInfo("en-US"), "  {0}: {1:C} ({2} seats)\n", plays[perf.PlayID].Name, AmountFor(plays[perf.PlayID], perf), perf.Audience);
+            result +=  $"  {plays[perf.PlayID].Name}: {string.Format(new CultureInfo("en-US"),"{0:C}", AmountFor(plays[perf.PlayID], perf))} ({perf.Audience} seats)\n";
             totalAmount += AmountFor(plays[perf.PlayID], perf);
         }
 
