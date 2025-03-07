@@ -8,9 +8,7 @@ public static class StatementPrinter
 {
     public static string Print(Invoice invoice, Dictionary<string, Play> plays)
     {
-        var volumeCredits = VolumeCreditsFor(invoice, plays);
-
-        var result = renderPlainText(invoice, plays, volumeCredits);
+        var result = renderPlainText(invoice, plays);
         return result;
     }
 
@@ -28,8 +26,9 @@ public static class StatementPrinter
         return volumeCredits;
     }
 
-    private static string renderPlainText(Invoice invoice, Dictionary<string, Play> plays, int volumeCredits)
+    private static string renderPlainText(Invoice invoice, Dictionary<string, Play> plays)
     {
+        var volumeCredits = VolumeCreditsFor(invoice, plays);
         var totalAmount = 0;
         var result = string.Format("Statement for {0}\n", invoice.Customer);
         CultureInfo cultureInfo = new CultureInfo("en-US");
