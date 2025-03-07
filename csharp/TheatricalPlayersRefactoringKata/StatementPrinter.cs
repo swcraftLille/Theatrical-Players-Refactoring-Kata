@@ -29,38 +29,38 @@ public static class StatementPrinter
     private static string RenderPlainText(Invoice invoice, Dictionary<string, Play> plays)
     {
         var volumeCredits = VolumeCreditsFor(invoice, plays);
-        var totalAmount = 0;
+        decimal totalAmount = 0;
         var result = $"Statement for {invoice.Customer}\n";
         CultureInfo cultureInfo = new CultureInfo("en-US");
         foreach (var perf in invoice.Performances)
         {
             // print line for this order
-            result += string.Format(cultureInfo, "  {0}: {1:C} ({2} seats)\n", plays[perf.PlayID].Name, Convert.ToDecimal(AmountFor(plays[perf.PlayID], perf) / 100), perf.Audience);
+            result += string.Format(cultureInfo, "  {0}: {1:C} ({2} seats)\n", plays[perf.PlayID].Name, AmountFor(plays[perf.PlayID], perf), perf.Audience);
             totalAmount += AmountFor(plays[perf.PlayID], perf);
         }
 
-        result += string.Format(cultureInfo, "Amount owed is {0:C}\n", Convert.ToDecimal(totalAmount / 100));
+        result += string.Format(cultureInfo, "Amount owed is {0:C}\n",totalAmount);
         result += $"You earned {volumeCredits} credits\n";
         return result;
     }
 
-    private static int AmountFor(Play play, Performance perf)
+    private static decimal AmountFor(Play play, Performance perf)
     {
         var thisAmount = 0;
         switch (play.Type) 
         {
             case "tragedy":
-                thisAmount = 40000;
+                thisAmount = 400;
                 if (perf.Audience > 30) {
-                    thisAmount += 1000 * (perf.Audience - 30);
+                    thisAmount += 10 * (perf.Audience - 30);
                 }
                 break;
             case "comedy":
-                thisAmount = 30000;
+                thisAmount = 300;
                 if (perf.Audience > 20) {
-                    thisAmount += 10000 + 500 * (perf.Audience - 20);
+                    thisAmount += 100 + 5 * (perf.Audience - 20);
                 }
-                thisAmount += 300 * perf.Audience;
+                thisAmount += 3 * perf.Audience;
                 break;
             default:
                 throw new Exception("unknown type: " + play.Type);
