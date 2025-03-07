@@ -23,7 +23,7 @@ public class StatementPrinterTests
             new Performance("as-like", 35),
             new Performance("othello", 40)]);
         
-        var result = StatementPrinter.Print(invoice, plays);
+        var result = StatementPrinter.RenderPlainText(invoice, plays);
 
         Approvals.Verify(result);
     }
@@ -40,6 +40,6 @@ public class StatementPrinterTests
         Invoice invoice = new("BigCoII", [new Performance("henry-v", 53),
             new Performance("as-like", 55)]);
         
-        Assert.Throws<Exception>(() => StatementPrinter.Print(invoice, plays));
+        Assert.Throws<Exception>(() => StatementPrinter.RenderPlainText(invoice, plays));
     }
 }

@@ -6,27 +6,7 @@ namespace TheatricalPlayersRefactoringKata;
 
 public static class StatementPrinter
 {
-    public static string Print(Invoice invoice, Dictionary<string, Play> plays)
-    {
-        var result = RenderPlainText(invoice, plays);
-        return result;
-    }
-
-    private static int VolumeCreditsFor(Invoice invoice, Dictionary<string, Play> plays)
-    {
-        var volumeCredits = 0;
-        foreach (var perf in invoice.Performances)
-        {
-            // add volume credits
-            volumeCredits += Math.Max(perf.Audience - 30, 0);
-            // add extra credit for every ten comedy attendees
-            if ("comedy" == plays[perf.PlayID].Type) volumeCredits += (int)Math.Floor((decimal)perf.Audience / 5);
-        }
-
-        return volumeCredits;
-    }
-
-    private static string RenderPlainText(Invoice invoice, Dictionary<string, Play> plays)
+    public static string RenderPlainText(Invoice invoice, Dictionary<string, Play> plays)
     {
         var volumeCredits = VolumeCreditsFor(invoice, plays);
         decimal totalAmount = 0;
@@ -72,6 +52,20 @@ public static class StatementPrinter
         }
 
         return thisAmount;
+    }
+
+    private static int VolumeCreditsFor(Invoice invoice, Dictionary<string, Play> plays)
+    {
+        var volumeCredits = 0;
+        foreach (var perf in invoice.Performances)
+        {
+            // add volume credits
+            volumeCredits += Math.Max(perf.Audience - 30, 0);
+            // add extra credit for every ten comedy attendees
+            if ("comedy" == plays[perf.PlayID].Type) volumeCredits += (int)Math.Floor((decimal)perf.Audience / 5);
+        }
+
+        return volumeCredits;
     }
 
     public static string renderHtml(Invoice invoice, Dictionary<string, Play> plays)
