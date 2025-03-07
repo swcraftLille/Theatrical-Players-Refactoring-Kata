@@ -8,7 +8,7 @@ public static class StatementPrinter
 {
     public static string Print(Invoice invoice, Dictionary<string, Play> plays)
     {
-        var result = renderPlainText(invoice, plays);
+        var result = RenderPlainText(invoice, plays);
         return result;
     }
 
@@ -26,11 +26,11 @@ public static class StatementPrinter
         return volumeCredits;
     }
 
-    private static string renderPlainText(Invoice invoice, Dictionary<string, Play> plays)
+    private static string RenderPlainText(Invoice invoice, Dictionary<string, Play> plays)
     {
         var volumeCredits = VolumeCreditsFor(invoice, plays);
         var totalAmount = 0;
-        var result = string.Format("Statement for {0}\n", invoice.Customer);
+        var result = $"Statement for {invoice.Customer}\n";
         CultureInfo cultureInfo = new CultureInfo("en-US");
         foreach (var perf in invoice.Performances)
         {
@@ -39,7 +39,7 @@ public static class StatementPrinter
             totalAmount += AmountFor(plays[perf.PlayID], perf);
         }
 
-        result += String.Format(cultureInfo, "Amount owed is {0:C}\n", Convert.ToDecimal(totalAmount / 100));
+        result += string.Format(cultureInfo, "Amount owed is {0:C}\n", Convert.ToDecimal(totalAmount / 100));
         result += $"You earned {volumeCredits} credits\n";
         return result;
     }
