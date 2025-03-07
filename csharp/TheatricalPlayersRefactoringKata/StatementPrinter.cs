@@ -31,15 +31,14 @@ public static class StatementPrinter
         var volumeCredits = VolumeCreditsFor(invoice, plays);
         decimal totalAmount = 0;
         var result = $"Statement for {invoice.Customer}\n";
-        CultureInfo cultureInfo = new CultureInfo("en-US");
         foreach (var perf in invoice.Performances)
         {
             // print line for this order
-            result += string.Format(cultureInfo, "  {0}: {1:C} ({2} seats)\n", plays[perf.PlayID].Name, AmountFor(plays[perf.PlayID], perf), perf.Audience);
+            result += string.Format(new CultureInfo("en-US"), "  {0}: {1:C} ({2} seats)\n", plays[perf.PlayID].Name, AmountFor(plays[perf.PlayID], perf), perf.Audience);
             totalAmount += AmountFor(plays[perf.PlayID], perf);
         }
 
-        result += string.Format(cultureInfo, "Amount owed is {0:C}\n",totalAmount);
+        result += string.Format(new CultureInfo("en-US"), "Amount owed is {0:C}\n",totalAmount);
         result += $"You earned {volumeCredits} credits\n";
         return result;
     }
