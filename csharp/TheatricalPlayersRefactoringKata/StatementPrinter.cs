@@ -8,11 +8,7 @@ public static class StatementPrinter
 {
     public static string Print(Invoice invoice, Dictionary<string, Play> plays)
     {
-        var totalAmount = 0;
         var volumeCredits = 0;
-        var result = string.Format("Statement for {0}\n", invoice.Customer);
-        CultureInfo cultureInfo = new CultureInfo("en-US");
-
         foreach (var perf in invoice.Performances)
         {
             // add volume credits
@@ -21,6 +17,15 @@ public static class StatementPrinter
             if ("comedy" == plays[perf.PlayID].Type) volumeCredits += (int)Math.Floor((decimal)perf.Audience / 5);
         }
 
+        var result = renderPlainText(invoice, plays, volumeCredits);
+        return result;
+    }
+
+    private static string renderPlainText(Invoice invoice, Dictionary<string, Play> plays, int volumeCredits)
+    {
+        var totalAmount = 0;
+        var result = string.Format("Statement for {0}\n", invoice.Customer);
+        CultureInfo cultureInfo = new CultureInfo("en-US");
         foreach (var perf in invoice.Performances)
         {
             // print line for this order
