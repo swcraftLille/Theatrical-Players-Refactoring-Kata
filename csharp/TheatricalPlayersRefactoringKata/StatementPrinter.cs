@@ -13,9 +13,11 @@ public static class StatementPrinter
         var result = $"Statement for {invoice.Customer}\n";
         foreach (var perf in invoice.Performances)
         {
-            // print line for this order
-            var amountFor = AmountFor(plays[perf.PlayID], perf);
-            result +=  $"  {plays[perf.PlayID].Name}: {ToUsDollar(amountFor)} ({perf.Audience} seats)\n";
+            result +=  $"  {plays[perf.PlayID].Name}: {ToUsDollar(AmountFor(plays[perf.PlayID], perf))} ({perf.Audience} seats)\n";
+        }
+
+        foreach (var perf in invoice.Performances)
+        {
             totalAmount += AmountFor(plays[perf.PlayID], perf);
         }
 
