@@ -34,13 +34,19 @@ public static class StatementPrinter
         foreach (var perf in invoice.Performances)
         {
             // print line for this order
-            result +=  $"  {plays[perf.PlayID].Name}: {string.Format(new CultureInfo("en-US"),"{0:C}", AmountFor(plays[perf.PlayID], perf))} ({perf.Audience} seats)\n";
+            var amountFor = AmountFor(plays[perf.PlayID], perf);
+            result +=  $"  {plays[perf.PlayID].Name}: {ToUsDollar(amountFor)} ({perf.Audience} seats)\n";
             totalAmount += AmountFor(plays[perf.PlayID], perf);
         }
 
-        result += string.Format(new CultureInfo("en-US"), "Amount owed is {0:C}\n",totalAmount);
+        result += $"Amount owed is {ToUsDollar(totalAmount)}\n";
         result += $"You earned {volumeCredits} credits\n";
         return result;
+    }
+
+    private static string ToUsDollar(decimal amountFor)
+    {
+        return string.Format(new CultureInfo("en-US"),"{0:C}", amountFor);
     }
 
     private static decimal AmountFor(Play play, Performance perf)
