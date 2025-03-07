@@ -48,4 +48,9 @@ public static class StatementPrinter
         result += $"You earned {volumeCredits} credits\n";
         return result;
     }
+
+    public static string renderHtml(Invoice invoice, Dictionary<string, Play> plays)
+    {
+        throw new NotImplementedException();
+    }
 }   

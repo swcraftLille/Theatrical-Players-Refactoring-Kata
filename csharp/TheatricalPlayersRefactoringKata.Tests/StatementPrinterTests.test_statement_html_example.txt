@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statement for BigCo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+        .play {
+            margin-left: 20px;
+            margin-bottom: 5px;
+        }
+        .seats {
+            color: #666;
+            font-style: italic;
+        }
+        .total {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        .credits {
+            color: #0066cc;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Statement for BigCo</h1>
+    <div class="play">
+        <strong>Hamlet:</strong> $650.00 <span class="seats">(55 seats)</span>
+    </div>
+    <div class="play">
+        <strong>As You Like It:</strong> $580.00 <span class="seats">(35 seats)</span>
+    </div>
+    <div class="play">
+        <strong>Othello:</strong> $500.00 <span class="seats">(40 seats)</span>
+    </div>
+    <div class="total">
+        Amount owed is $1,730.00
+    </div>
+    <div class="credits">
+        You earned 47 credits
+    </div>
+</body>
+</html>
