@@ -9,21 +9,27 @@ public static class StatementPrinter
     public static string RenderPlainText(Invoice invoice, Dictionary<string, Play> plays)
     {
         var volumeCredits = VolumeCreditsFor(invoice, plays);
-        decimal totalAmount = 0;
+        var totalAmount = TotalAmountFor(invoice, plays);
+
         var result = $"Statement for {invoice.Customer}\n";
         foreach (var perf in invoice.Performances)
         {
             result +=  $"  {plays[perf.PlayID].Name}: {ToUsDollar(AmountFor(plays[perf.PlayID], perf))} ({perf.Audience} seats)\n";
         }
+        result += $"Amount owed is {ToUsDollar(totalAmount)}\n";
+        result += $"You earned {volumeCredits} credits\n";
+        return result;
+    }
 
+    private static decimal TotalAmountFor(Invoice invoice, Dictionary<string, Play> plays)
+    {
+        decimal totalAmount = 0;
         foreach (var perf in invoice.Performances)
         {
             totalAmount += AmountFor(plays[perf.PlayID], perf);
         }
 
-        result += $"Amount owed is {ToUsDollar(totalAmount)}\n";
-        result += $"You earned {volumeCredits} credits\n";
-        return result;
+        return totalAmount;
     }
 
     private static string ToUsDollar(decimal amountFor)
