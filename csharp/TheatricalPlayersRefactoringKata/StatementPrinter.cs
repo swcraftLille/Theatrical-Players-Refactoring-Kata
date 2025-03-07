@@ -8,22 +8,28 @@ public static class StatementPrinter
 {
     public static string RenderPlainText(Invoice invoice, Dictionary<string, Play> plays)
     {
-        var volumeCredits = VolumeCreditsFor(invoice, plays);
-        var totalAmount = TotalAmountFor(invoice, plays);
+        var statementData = new StatementData()
+        {
+            TotalAmount = TotalAmountFor(invoice, plays),
+            VolumeCredits = VolumeCreditsFor(invoice, plays),
+            Customer = invoice.Customer,
+            Performances = invoice.Performances,
+        };
 
-        var result = TextStatementFor(invoice, plays, totalAmount, volumeCredits);
+        var result = TextStatementFor(plays, statementData);
         return result;
     }
 
-    private static string TextStatementFor(Invoice invoice, Dictionary<string, Play> plays, decimal totalAmount, int volumeCredits)
+    private static string TextStatementFor(Dictionary<string, Play> plays,
+        StatementData statementData)
     {
-        var result = $"Statement for {invoice.Customer}\n";
-        foreach (var perf in invoice.Performances)
+        var result = $"Statement for {statementData.Customer}\n";
+        foreach (var perf in statementData.Performances)
         {
             result +=  $"  {plays[perf.PlayID].Name}: {ToUsDollar(AmountFor(plays[perf.PlayID], perf))} ({perf.Audience} seats)\n";
         }
-        result += $"Amount owed is {ToUsDollar(totalAmount)}\n";
-        result += $"You earned {volumeCredits} credits\n";
+        result += $"Amount owed is {ToUsDollar(statementData.TotalAmount)}\n";
+        result += $"You earned {statementData.VolumeCredits} credits\n";
         return result;
     }
 
@@ -86,4 +92,4 @@ public static class StatementPrinter
     {
         throw new NotImplementedException();
     }
-}   
+}
