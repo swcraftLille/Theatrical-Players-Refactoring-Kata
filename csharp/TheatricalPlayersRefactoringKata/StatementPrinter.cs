@@ -8,6 +8,14 @@ public static class StatementPrinter
 {
     public static string Print(Invoice invoice, Dictionary<string, Play> plays)
     {
+        var volumeCredits = VolumeCreditsFor(invoice, plays);
+
+        var result = renderPlainText(invoice, plays, volumeCredits);
+        return result;
+    }
+
+    private static int VolumeCreditsFor(Invoice invoice, Dictionary<string, Play> plays)
+    {
         var volumeCredits = 0;
         foreach (var perf in invoice.Performances)
         {
@@ -17,8 +25,7 @@ public static class StatementPrinter
             if ("comedy" == plays[perf.PlayID].Type) volumeCredits += (int)Math.Floor((decimal)perf.Audience / 5);
         }
 
-        var result = renderPlainText(invoice, plays, volumeCredits);
-        return result;
+        return volumeCredits;
     }
 
     private static string renderPlainText(Invoice invoice, Dictionary<string, Play> plays, int volumeCredits)
