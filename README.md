@@ -4,10 +4,19 @@ Demander l'accès au ["miro" de l'exercice **Trouver les paragraphes**](https://
 
 # Theatrical Players Refactoring Kata
 ## Français
-_Support this and all Emiily's katas via [Patreon](https://www.patreon.com/EmilyBache)_
+_Soutenez ceci et tous les Kata d'Emily's katas via [Patreon](https://www.patreon.com/EmilyBache)_
 
+### Origine
 Le premier chapitre de ['Refactoring' by Martin Fowler, 2nd Edition](https://www.thoughtworks.com/books/refactoring2) contient un exemple travaillé de cet exercice, en javascript. Ce chapitre est disponible en téléchargement gratuit. Ce repo contient le point de départ de cet exercice dans plusieurs langues, avec des tests, afin que vous puissiez l'essayer par vous-même.
 
+### Descriptif du Kata
+
+“Imaginez une compagnie d'acteurs de théâtre qui se rend à divers événements pour y jouer des pièces. 
+En général, un client demande quelques pièces de théâtre et la compagnie le facture en fonction de la taille du public et du type de pièce qu'elle joue.
+Actuellement, la compagnie joue deux types de pièces : les tragédies et les comédies. 
+En plus de fournir une facture pour la représentation, la société donne à ses clients des « crédits de volume » qu'ils peuvent utiliser pour obtenir des réductions sur les représentations futures - il s'agit d'un mécanisme de fidélisation de la clientèle.”
+
+### Travail d'Emily
 Emily a réalisé une vidéo ["Refactoring with Martin Fowler | Theatrical Players Code Kata"](https://youtu.be/TjIrKEaOiVw) qui explique un peu l'exercice et pourquoi vous devriez l'essayer.
 
 Elle a également réalisée une [démo en Javascript](https://youtu.be/cZJ36B3iXok) avec l'éditeur Webstorm (Jetbrain).
@@ -18,10 +27,10 @@ Le refactoring est généralement motivé par la nécessité d'apporter des chan
 * Il mentionne également que les acteurs de théâtre veulent ajouter de nouveaux types de pièces à leur répertoire, par exemple des pièces historiques et pastorales.
 
 ### Tests automatisés
-Dans son livre, Fowler mentionne que la première étape du remaniement est toujours la même : s'assurer que l'on dispose d'un ensemble solide de tests pour cette section du code. Cependant, Fowler n'a pas inclus le code de test pour cet exemple dans son livre. Emily a utilisé une approche [Approval testing] (https://medium.com/97-things/approval-testing-33946cde4aa8) et ajouté quelques tests. Elle trouve que les tests d'approbation sont une technique puissante pour mettre rapidement le code existant sous test et pour soutenir le remaniement. Vous devriez examiner ces tests et vous assurer que vous comprenez ce qu'ils couvrent et quels types d'erreurs de remaniement ils s'attendent à trouver.
+Dans son livre, Fowler mentionne que la première étape du remaniement est toujours la même : s'assurer que l'on dispose d'un ensemble solide de tests pour cette section du code. Cependant, Fowler n'a pas inclus le code de test pour cet exemple dans son livre. Emily a utilisé une approche [Approval testing](https://medium.com/97-things/approval-testing-33946cde4aa8) et ajouté quelques tests. Elle trouve que les tests d'approbation sont une technique puissante pour mettre rapidement le code existant sous test et pour soutenir le remaniement. Vous devriez examiner ces tests et vous assurer que vous comprenez ce qu'ils couvrent et quels types d'erreurs de remaniement ils s'attendent à trouver.
 
 ## English (original from Emily)
-_Support this and all Emiily's katas via [Patreon](https://www.patreon.com/EmilyBache)_
+_Support this and all Emily's katas via [Patreon](https://www.patreon.com/EmilyBache)_
 
 The first chapter of ['Refactoring' by Martin Fowler, 2nd Edition](https://www.thoughtworks.com/books/refactoring2) contains a worked example of this exercise, in javascript. That chapter is available to download for free. This repo contains the starting point for this exercise in several languages, with tests, so you can try it out for yourself.
 
