@@ -8,9 +8,8 @@ public static class StatementPrinter
 {
     public static string RenderPlainText(Invoice invoice, Dictionary<string, Play> plays)
     {
-        var statementData = new StatementData()
+        var statementData = new StatementData(invoice, plays)
         {
-            TotalAmount = TotalAmountFor(invoice, plays),
             VolumeCredits = VolumeCreditsFor(invoice, plays),
             Customer = invoice.Customer,
             Performances = invoice.Performances,
